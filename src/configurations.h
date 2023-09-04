@@ -1,5 +1,5 @@
 // =============================================================================
-// Template-Project | Configurations
+// Arduino-RF-Toolkit | Configurations
 // =============================================================================
 
 #ifndef _TEMPLATE_PROJECT_CONFIGURATIONS_
