@@ -8,17 +8,30 @@
 //------------------------------------------------------------------------------
 // Public methods
 
-TLV::TLVPacket TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress, uint16_t receiverAddress, uint8_t* value, uint16_t valueLength)
+void TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress, uint16_t receiverAddress, String data)
 {
     TLV::TLVPacket packet;
     packet.tag = tag;
-    packet.length = valueLength;
+    packet.length = data.length();
     packet.crc = crc;
     packet.senderAddress = senderAddress;
     packet.receiverAddress = receiverAddress;
-    packet.value = value;
+    packet.data = data.c_str();
 
-    return packet;
+    packet_ = packet;
+}
+
+String TLV::toString()
+{
+    String packetString = "";
+    packetString += packet_.tag;
+    packetString += packet_.length;
+    packetString += packet_.crc;
+    packetString += packet_.senderAddress;
+    packetString += packet_.receiverAddress;
+    packetString += String(packet_.data);
+
+    return packetString;
 }
 
 TLV::TLVPacket TLV::parsePacket(char* packet)

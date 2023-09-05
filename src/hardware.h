@@ -15,7 +15,8 @@ namespace Hardware
     // Example entries
     enum class Port : uint8_t
     {
-
+        RF_TX = 0,
+        RF_RX = 1
     };
 
 

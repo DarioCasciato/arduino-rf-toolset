@@ -16,18 +16,23 @@ public:
         uint16_t crc;
         uint16_t senderAddress;
         uint16_t receiverAddress;
-        uint8_t* value;
+        const char* data;
     };
 
-    /// @brief Creates a TLV packet. takes uint8_t* as value
+    /// @brief Creates a TLV packet
     ///
     /// @param tag The tag of the TLV packet
     /// @param crc The crc of the TLV packet
     /// @param senderAddress The sender address of the TLV packet
     /// @param receiverAddress The receiver address of the TLV packet
-    /// @param value The value of the TLV packet
-    TLVPacket createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress,
-                           uint16_t receiverAddress, uint8_t* value, uint16_t valueLength);
+    /// @param data The data of the TLV packet
+    void TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress,
+                                     uint16_t receiverAddress, String data);
+
+    /// @brief Returns the packet as a Arduino String
+    ///
+    /// @return The packet as a Arduino String
+    String toString();
 
     // create a parse tlv packet function
     /// @brief Parses a TLV packet
@@ -42,4 +47,6 @@ private:
     /// @param packet The packet that needs to be calculated
     /// @return The full size of the packet
     uint16_t TLV::getFullPacketSize(TLVPacket packet);
+
+    TLVPacket packet_;
 };
