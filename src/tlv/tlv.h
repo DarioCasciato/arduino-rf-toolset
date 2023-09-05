@@ -26,7 +26,8 @@ public:
     /// @param senderAddress The sender address of the TLV packet
     /// @param receiverAddress The receiver address of the TLV packet
     /// @param value The value of the TLV packet
-    TLVPacket createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress, uint16_t receiverAddress, uint8_t* value);
+    TLVPacket createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress,
+                           uint16_t receiverAddress, uint8_t* value, uint16_t valueLength);
 
     // create a parse tlv packet function
     /// @brief Parses a TLV packet
@@ -36,11 +37,6 @@ public:
     TLVPacket parsePacket(char* packet);
 
 private:
-
-    /// @brief calculates the size of the packet
-    /// @param value Value tat needs to be transmitted
-    /// @return size of the packet
-    uint16_t getValueSize(uint8_t* value);
 
     /// @brief Calculates the full size of the packet
     /// @param packet The packet that needs to be calculated

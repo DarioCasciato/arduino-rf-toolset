@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 // Public methods
 
-TLV::TLVPacket TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress, uint16_t receiverAddress, uint8_t* value)
+TLV::TLVPacket TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress, uint16_t receiverAddress, uint8_t* value, uint16_t valueLength)
 {
     TLV::TLVPacket packet;
     packet.tag = tag;
-    packet.length = TLV::getValueSize(value);
+    packet.length = valueLength;
     packet.crc = crc;
     packet.senderAddress = senderAddress;
     packet.receiverAddress = receiverAddress;
@@ -32,15 +32,10 @@ TLV::TLVPacket TLV::parsePacket(char* packet)
 //------------------------------------------------------------------------------
 // Private methods
 
-uint16_t TLV::getValueSize(uint8_t* value)
-{
-    return sizeof(value);
-}
-
 uint16_t TLV::getFullPacketSize(TLV::TLVPacket packet)
 {
     uint16_t packetSize = 0;
-    packetSize = sizeof(packet);
+    packetSize = sizeof(packet) + packet.length;
 
     return packetSize;
 }
