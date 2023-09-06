@@ -12,6 +12,9 @@ void TagHandler::PingPong(Transceiver handler)
     uint8_t pingPong;
 
     handler.tlv.read(pingPong); // read the pingPong value from tlv packet
+    if(handler.tlv.readError())
+        return;
+
 
     if(0 == pingPong)
         handler.respond(pingPong++);
