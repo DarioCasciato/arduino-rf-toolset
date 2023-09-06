@@ -8,6 +8,7 @@
 #include "EdgeDetection.h"
 #include "configurations.h"
 #include "gpio.h"
+#include "transceiver.h"
 
 
 namespace Hardware
@@ -18,6 +19,8 @@ namespace Hardware
         RF_TX = 0,
         RF_RX = 1
     };
+
+    extern Transceiver transceiver;
 
 
     /// @brief Initializes hardware

@@ -7,7 +7,7 @@
 
 namespace Hardware
 {
-
+    Transceiver transceiver;
 
 
     void init()
