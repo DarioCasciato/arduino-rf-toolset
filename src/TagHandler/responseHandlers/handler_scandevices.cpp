@@ -2,14 +2,14 @@
 // Arduino-RF-Toolkit | Handlers
 // =============================================================================
 
-#include "TagHandler/tagHandlers.h"
+#include "responseHandlers.h"
 #include "logging.h"
 
 
 /// @brief scanDevices Tag Handler function
 ///
 /// @param handler The transceiver object
-void TagHandler::scanDevices(Transceiver handler)
+void ResponseHandler::scanDevices(Transceiver handler)
 {
     uint16_t receiverAddr = handler.tlv.getReceiverAddress();
 

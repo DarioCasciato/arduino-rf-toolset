@@ -168,3 +168,68 @@ uint16_t TLV::getFullPacketSize(TLV::TLVPacket packet)
 
     return packetSize;
 }
+
+
+// =============================================================================
+
+// TLVResponse
+
+TLVResponse::TLVResponse()
+{
+}
+
+TLVResponse::~TLVResponse()
+{
+    delete[] response_;
+}
+
+String TLVResponse::toString()
+{
+    String responseString = "";
+    for(uint8_t i = 0; i < index_; i++)
+    {
+        responseString += response_[i];
+    }
+
+    return responseString;
+}
+
+void TLVResponse::append(uint8_t value)
+{
+    response_[index_] = value;
+    index_++;
+}
+
+void TLVResponse::append(uint16_t value)
+{
+    append(uint8_t(value >> 8));
+    append(uint8_t(value));
+}
+
+void TLVResponse::append(uint32_t value)
+{
+    append(uint8_t(value >> 24));
+    append(uint8_t(value >> 16));
+    append(uint8_t(value >> 8));
+    append(uint8_t(value));
+}
+
+void TLVResponse::append(uint64_t value)
+{
+    append(uint8_t(value >> 56));
+    append(uint8_t(value >> 48));
+    append(uint8_t(value >> 40));
+    append(uint8_t(value >> 32));
+    append(uint8_t(value >> 24));
+    append(uint8_t(value >> 16));
+    append(uint8_t(value >> 8));
+    append(uint8_t(value));
+}
+
+void TLVResponse::append(String value)
+{
+    for(uint8_t i = 0; i < value.length(); i++)
+    {
+        append((uint8_t)value[i]);
+    }
+}

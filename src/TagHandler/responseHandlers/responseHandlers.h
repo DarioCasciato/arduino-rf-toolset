@@ -2,38 +2,38 @@
 // Arduino-RF-Toolkit | Tag-Handlers
 // =============================================================================
 
-#ifndef ARDUINO_RF_TOOLKIT_TAG_HANDLERS_H
-#define ARDUINO_RF_TOOLKIT_TAG_HANDLERS_H
+#ifndef ARDUINO_RF_TOOLKIT_RESPONSE_HANDLERS_H
+#define ARDUINO_RF_TOOLKIT_RESPONSE_HANDLERS_H
 
 #include "transceiver.h"
 
-namespace TagHandler
+namespace ResponseHandler
 {
-    /// @brief The tag handler function
-    void tagHandler(Transceiver handler);
+    /// @brief The resposne handler function
+    void responseHandler(Transceiver handler);
 
 
     // Handlers
 
-    /// @brief ScanDevices Tag Handler function
+    /// @brief ScanDevices Response Handler function
     void scanDevices(Transceiver handler);
 
-    /// @brief PingPong Tag Handler function
+    /// @brief PingPong Response Handler function
     void PingPong(Transceiver handler);
 
-    /// @brief sendNumber Tag Handler function
+    /// @brief sendNumber Response Handler function
     void sendString(Transceiver handler);
 
-    /// @brief sendNumber Tag Handler function
+    /// @brief sendNumber Response Handler function
     void sendNumber(Transceiver handler);
 
-    /// @brief setPort Tag Handler function
+    /// @brief setPort Response Handler function
     void setPort(Transceiver handler);
 
-    /// @brief setPort Tag Handler function
+    /// @brief setPort Response Handler function
     void getPort(Transceiver handler);
 
-} // TagHandler
+} // Response Handler
 
 
-#endif //ARDUINO_RF_TOOLKIT_TAG_HANDLERS_H
+#endif //ARDUINO_RF_TOOLKIT_RESPONSE_HANDLERS_H

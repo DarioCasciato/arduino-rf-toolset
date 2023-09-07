@@ -2,13 +2,13 @@
 // Arduino-RF-Toolkit | Handlers
 // =============================================================================
 
-#include "TagHandler/tagHandlers.h"
+#include "responseHandlers.h"
 #include "logging.h"
 
 /// @brief PingPong Tag Handler function
 /// First sender sends a0 as uint8_t, receiver responses with a 1 as uint8_t
 /// @param handler
-void TagHandler::PingPong(Transceiver handler)
+void ResponseHandler::PingPong(Transceiver handler)
 {
     uint8_t message;
     handler.tlv.read(message); // read the message from tlv packet

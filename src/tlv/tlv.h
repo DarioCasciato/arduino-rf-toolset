@@ -102,3 +102,36 @@ private:
     void* reader;
     uint8_t error_;
 };
+
+
+class TLVResponse
+{
+private:
+    uint8_t response_[255];
+    uint8_t index_ = 0;
+
+    void append(uint8_t value);
+    void append(uint16_t value);
+    void append(uint32_t value);
+    void append(uint64_t value);
+    void append(String value);
+
+public:
+    /// @brief Constructor
+    TLVResponse();
+
+    /// @brief Destructor
+    ~TLVResponse();
+
+    template <typename T>
+    TLVResponse operator<<(T value)
+    {
+        append(value);
+        return *this;
+    }
+
+    /// @brief Returns the response as a Arduino String
+    ///
+    /// @return The response as a Arduino String
+    String toString();
+};

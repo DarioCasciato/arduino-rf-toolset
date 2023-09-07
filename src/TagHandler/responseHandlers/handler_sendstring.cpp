@@ -8,7 +8,7 @@
 /// @brief sendString Handler function
 ///
 /// @param handler The transceiver object
-void TagHandler::sendString(Transceiver handler)
+void ResponseHandler::sendString(Transceiver handler)
 {
     String message;
 

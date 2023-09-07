@@ -2,47 +2,38 @@
 // Arduino-RF-Toolkit | Tag-Handlers
 // =============================================================================
 
-#include "responseHandlers.h"
+#include "sendHandlers.h"
 #include "tags.h"
 
-namespace ResponseHandler
+namespace SendHandler
 {
 
-    void responseHandler(Transceiver handler)
+    void sendHandler(SerialTLV handler)
     {
-        Tags::Tag tag = (Tags::Tag)handler.tlv.getTag();
+        Tags::Tag tag = (Tags::Tag)handler.getTag();
 
         switch (tag)
         {
             case Tags::Tag::ScanDevices:
-                scanDevices(handler);
                 break;
 
             case Tags::Tag::PingPong:
-                PingPong(handler);
                 break;
 
             case Tags::Tag::SendString:
-                sendString(handler);
                 break;
 
             case Tags::Tag::SendNumber:
-                sendNumber(handler);
                 break;
 
             case Tags::Tag::SetPort:
-                setPort(handler);
                 break;
 
             case Tags::Tag::GetPort:
-                getPort(handler);
                 break;
 
             default:
                 break;
         }
-
-        return;
     }
-
-} // namespace TagHandler
+} // namespace SendHandler

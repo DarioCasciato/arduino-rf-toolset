@@ -5,31 +5,66 @@
 #include "responseHandlers.h"
 #include "logging.h"
 
-#include "gpioHandler.h"
 #include "hardware.h"
+#include "tlv.h"
+#include "gpiohandler.h"
+
+
+namespace { uint8_t responseBit; }
 
 /// @brief getPort Handler function
 ///
 /// @param handler The transceiver object
-void TagHandler::getPort(Transceiver handler)
+void ResponseHandler::getPort(Transceiver handler)
 {
-    uint8_t port;
-
-    handler.tlv.read(port); // read the number from tlv packet
+    handler.tlv.read(responseBit);
     if(handler.tlv.readError())
         return;
 
-    if((Hardware::Port)port != Hardware::Port::RF_RX
-        && (Hardware::Port)port != Hardware::Port::RF_TX)
+    if(!responseBit)
+        sendGetPort(handler);
+
+    else if(responseBit)
+        evaluateGetPort(handler);
+
+    return;
+}
+
+// -----------------------------------------------------------------------------
+
+void sendGetPort(Transceiver handler)
+{
+    TLVResponse response;
+    uint8_t port;
+
+    handler.tlv.read(port);
+
+    if(port != (uint8_t)Hardware::Port::RF_RX
+        && port != (uint8_t)Hardware::Port::RF_TX)
     {
-        uint8_t level = GPIO::getPort((Hardware::Port)port);
-        handler.respond(level);
-        Logging::log("%d: Get port %d: %d", handler.tlv.getSenderAddress(), port, level);
+        response << (responseBit + 1); // response bit
+        response << port;
+        response << GPIO::getPort((Hardware::Port)port); // get the port level
+
+        handler.respond(response.toString());
     }
     else
     {
         Logging::log("%d: Cannot get port %d", handler.tlv.getSenderAddress(), port);
     }
+
+    return;
+}
+
+void evaluateGetPort(Transceiver handler)
+{
+    uint8_t port;
+    uint8_t level;
+
+    handler.tlv.read(port);
+    handler.tlv.read(level);
+
+    Logging::log("%d: Port %d is %d", handler.tlv.getSenderAddress(), port, level);
 
     return;
 }

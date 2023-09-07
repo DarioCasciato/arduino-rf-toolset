@@ -8,7 +8,7 @@
 /// @brief sendNumber Handler function
 ///
 /// @param handler The transceiver object
-void TagHandler::sendNumber(Transceiver handler)
+void ResponseHandler::sendNumber(Transceiver handler)
 {
     uint64_t number;
 

@@ -11,7 +11,7 @@
 /// @brief setPort Handler function
 ///
 /// @param handler The transceiver object
-void TagHandler::setPort(Transceiver handler)
+void ResponseHandler::setPort(Transceiver handler)
 {
     uint8_t port;
     uint8_t level;
