@@ -37,6 +37,8 @@ namespace State
     // State implementations
     void stateApp()
     {
+        // TODO: implement serialHandler
+
         if(Hardware::transceiver.available())
         {
             TagHandler::tagHandler(Hardware::transceiver);
