@@ -91,8 +91,8 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, String data)
 bool Transceiver::available()
 {
     receiveStatus status = (receiveStatus)getReceivedData(receiveBuffer_,
-                                           sizeof(receiveBuffer_),
-                                           receivedBytes_);
+                                                          (uint8_t)sizeof(receiveBuffer_),
+                                                          receivedBytes_);
 
     // check for transmisssion error
     if(status == receiveStatus::BufOverflow)

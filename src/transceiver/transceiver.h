@@ -66,7 +66,7 @@ private:
     uint8_t rxPin_;
     uint8_t txPin_;
     byte receiveBuffer_[255];
-    uint16_t receivedBytes_;
+    uint8_t receivedBytes_;
 
 
 };
