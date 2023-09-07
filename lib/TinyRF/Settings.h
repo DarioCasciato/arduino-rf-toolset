@@ -1,7 +1,7 @@
 #ifndef TRF_SETTINGS_H
 #define TRF_SETTINGS_H
 
-
+#include "hardware.h"
 
 /**
  * IMPORTANT: FOR SETTINGS THAT HAVE MULTIPLE OPTIONS ONLY ONE OPTION CAN BE ENABLED AT A TIME
@@ -13,7 +13,7 @@
 /**
  * The pin that is connected to the transmission module.
 **/
-#define TRF_TX_PIN 2
+const uint8_t TRF_TX_PIN = (uint8_t) Hardware::Port::RF_TX;
 
 
 /**
@@ -22,7 +22,8 @@
  * Checksum detects less errors.
  * Alternatively you can use TRF_ERROR_CHECKING_NONE to disable error checking altogether.
  * Note: Error checking can only detect if a data was corrupted during transmission.
- * It cannot recover the original data. So you still need to send a message multiple times to 
+
+ * It cannot recover the original data. So you still need to send a message multiple times to
  * make sure it is received.
 **/
 #define TRF_ERROR_CHECKING_CRC
@@ -33,7 +34,7 @@
 /**
  * Whether sequence numbering should be disabled.
  * It is enabled by default. Uncomment the below define to disable it.
- * If enabled, a sequence number will be attached to every message sent. In the receiver 
+ * If enabled, a sequence number will be attached to every message sent. In the receiver
  * the sequence number will be checked to determine if any messages have been lost inbetween.
  * The sequence number resets at 255 so if there's more than 255 messages lost we won't find out.
 **/
@@ -42,10 +43,10 @@
 
 /**
  * Data rate presets
- * 
+ *
  * Available presets are: TRF_BITRATE_200, TRF_BITRATE_500, TRF_BITRATE_1000, TRF_BITRATE_2000
  * These speeds are estimated speeds, they aren't accurate
- * 
+ *
  * According to the datasheet uncalibrated ATtiny13 has 10% frequency error.
  * We also need at least 30us of error margin because we use delayMicroseconds() which isn't super accurate.
  * So if our 0 pulse period is 500 then our error margin is 500-50-30 to 500+50+30
@@ -79,7 +80,7 @@
  * The size of the buffer depends on how much RAM you have available, how big your messages are,
  * how frequently you send them and how frequently you call getReceivedData() in your receiver code
  * Note that when you use sendMulti() all of the messages will be stored in buffer until read with getReceivedData()
- * How to calculate: 
+ * How to calculate:
  * minimum buffer size = (message length + 3) * repetition
  * So if you wanna do sendMulti("hello", 5, 2) you're gonna need (5 + 3) * 2 = 16 bytes of buffer
 **/
@@ -88,19 +89,19 @@
 
 /**
  * [ You probably don't want to change this ]
- * We don't have a specific pulse that signals the end of a transmission. 
+ * We don't have a specific pulse that signals the end of a transmission.
  * We rely on 1- noise and 2- message length for that.
  * 1) Message length is sent with each frame but it's susceptible to noise and cannot be trusted 100%.
  * 2) When noise is received in the receiver the transmission is considered over.
- * But in the rare even that you are in a noiseless environment or if you are sending messages 
- * without a delay between them (which allows for noise to cause EOT) this could mean that the 
+ * But in the rare even that you are in a noiseless environment or if you are sending messages
+ * without a delay between them (which allows for noise to cause EOT) this could mean that the
  * receiver will keep waiting for the next byte of the transmission AND add the next preabmle to current message
  * There are two ways we can fix that
- * 1- Create noise in the TX: i.e. send a bunch of meaningless pulses 
- * 2- Detect end of transmission in RX: i.e. when no data has been received for a while consider 
+ * 1- Create noise in the TX: i.e. send a bunch of meaningless pulses
+ * 2- Detect end of transmission in RX: i.e. when no data has been received for a while consider
  * the transmission finished.
- * Solution number 2 has a drawback: we don't use timer interrupt for checking how long there has 
- * been silence, instead we use getReceivedData() for that. So if getReceivedData() is not called 
+ * Solution number 2 has a drawback: we don't use timer interrupt for checking how long there has
+ * been silence, instead we use getReceivedData() for that. So if getReceivedData() is not called
  * frequently enough we will not be able to detect EOT (this is in case there is no noise and len is curropted)
  * So there are 3 redundant means by which we detect EOT, this means our errors will be rare
  * The default is EOT_IN_RX because we want to minimize the transmitter code size
