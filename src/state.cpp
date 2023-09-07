@@ -6,7 +6,8 @@
 #include "hardware.h"
 #include "configurations.h"
 #include "Timer.h"
-#include "TagHandler/tagHandlers.h"
+#include "responseHandlers/responseHandlers.h"
+#include "sendHandlers/sendHandlers.h"
 
 Timer counter;
 
@@ -41,7 +42,12 @@ namespace State
 
         if(Hardware::transceiver.available())
         {
-            TagHandler::tagHandler(Hardware::transceiver);
+            ResponseHandler::responseHandler(Hardware::transceiver);
+        }
+
+        if(Hardware::serialTLV.getSerialInput())
+        {
+            SendHandler::sendHandler(Hardware::serialTLV);
         }
     }
 

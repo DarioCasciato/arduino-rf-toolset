@@ -8,7 +8,9 @@
 #include "EdgeDetection.h"
 #include "configurations.h"
 #include "gpio.h"
+
 #include "transceiver.h"
+#include "serial_tlv.h"
 
 
 namespace Hardware
@@ -21,6 +23,7 @@ namespace Hardware
     };
 
     extern Transceiver transceiver;
+    extern SerialTLV serialTLV;
 
 
     /// @brief Initializes hardware

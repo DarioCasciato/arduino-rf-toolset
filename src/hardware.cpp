@@ -11,6 +11,7 @@ namespace Hardware
     // Constructor for transceiver
     Transceiver transceiver(DeviceAddress, (uint8_t) Port::RF_RX, (uint8_t) Port::RF_TX);
 
+    SerialTLV serialTLV;
 
     void init()
     {
