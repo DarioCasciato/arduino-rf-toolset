@@ -29,7 +29,7 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, uint8_t data)
     tlv.createPacket(tag, crc16, deviceAddr_, destAddr, String(data));
     String packet = tlv.toString();
 
-    // TODO: Implement TinyRF_TX sending
+    send((uint8_t*)packet.c_str(), packet.length());
 
     return true;
 }
@@ -42,7 +42,7 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, uint16_t data)
     tlv.createPacket(tag, crc16, deviceAddr_, destAddr, String(data));
     String packet = tlv.toString();
 
-    // TODO: Implement TinyRF_TX sending
+    send((uint8_t*)packet.c_str(), packet.length());
 
     return true;
 }
@@ -55,7 +55,7 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, uint32_t data)
     tlv.createPacket(tag, crc16, deviceAddr_, destAddr, String(data));
     String packet = tlv.toString();
 
-    // TODO: Implement TinyRF_TX sending
+    send((uint8_t*)packet.c_str(), packet.length());
 
     return true;
 }
@@ -68,7 +68,7 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, uint64_t data)
     tlv.createPacket(tag, crc16, deviceAddr_, destAddr, Conversions::uint64ToString(data));
     String packet = tlv.toString();
 
-    // TODO: Implement TinyRF_TX sending
+    send((uint8_t*)packet.c_str(), packet.length());
 
     return true;
 }
@@ -81,7 +81,7 @@ bool Transceiver::transmit(uint16_t tag, uint16_t destAddr, String data)
     tlv.createPacket(tag, crc16, deviceAddr_, destAddr, data);
     String packet = tlv.toString();
 
-    // TODO: Implement TinyRF_TX sending
+    send((uint8_t*)packet.c_str(), packet.length());
 
     return true;
 }
