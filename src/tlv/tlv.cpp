@@ -168,4 +168,3 @@ uint16_t TLV::getFullPacketSize(TLV::TLVPacket packet)
 
     return packetSize;
 }
-

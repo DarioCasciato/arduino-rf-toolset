@@ -22,6 +22,7 @@ const uint8_t TRF_TX_PIN = (uint8_t) Hardware::Port::RF_TX;
  * Checksum detects less errors.
  * Alternatively you can use TRF_ERROR_CHECKING_NONE to disable error checking altogether.
  * Note: Error checking can only detect if a data was corrupted during transmission.
+
  * It cannot recover the original data. So you still need to send a message multiple times to
  * make sure it is received.
 **/
