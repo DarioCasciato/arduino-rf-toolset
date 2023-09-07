@@ -2,7 +2,7 @@
 // Arduino-RF-Toolkit | Tag-Handlers
 // =============================================================================
 
-#include "tagHandlers.h"
+#include "responseHandlers.h"
 #include "tags.h"
 
 namespace TagHandler
@@ -14,8 +14,28 @@ namespace TagHandler
 
         switch (tag)
         {
+            case Tags::Tag::ScanDevices:
+                scanDevices(handler);
+                break;
+
             case Tags::Tag::PingPong:
                 PingPong(handler);
+                break;
+
+            case Tags::Tag::SendString:
+                sendString(handler);
+                break;
+
+            case Tags::Tag::SendNumber:
+                sendNumber(handler);
+                break;
+
+            case Tags::Tag::SetPort:
+                setPort(handler);
+                break;
+
+            case Tags::Tag::GetPort:
+                getPort(handler);
                 break;
 
             default:

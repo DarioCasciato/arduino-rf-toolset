@@ -29,7 +29,12 @@ public:
     /// @param deviceAddr The address of the device
     /// @param rxPin The pin that is connected to the receiver
     /// @param txPin The pin that is connected to the transmitter
-    Transceiver(uint16_t deviceAddr, uint8_t rxPin, uint8_t txPin);
+    Transceiver(const uint16_t deviceAddr, uint8_t rxPin, uint8_t txPin);
+
+    /// @brief  Get the device address
+    ///
+    /// @return The device address
+    uint16_t getDeviceAddr() { return deviceAddr_; }
 
     /// @brief Transmits a TLV packet
     ///

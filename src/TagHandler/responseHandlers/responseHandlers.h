@@ -15,9 +15,23 @@ namespace TagHandler
 
     // Handlers
 
+    /// @brief ScanDevices Tag Handler function
+    void scanDevices(Transceiver handler);
+
     /// @brief PingPong Tag Handler function
     void PingPong(Transceiver handler);
 
+    /// @brief sendNumber Tag Handler function
+    void sendString(Transceiver handler);
+
+    /// @brief sendNumber Tag Handler function
+    void sendNumber(Transceiver handler);
+
+    /// @brief setPort Tag Handler function
+    void setPort(Transceiver handler);
+
+    /// @brief setPort Tag Handler function
+    void getPort(Transceiver handler);
 
 } // TagHandler
 

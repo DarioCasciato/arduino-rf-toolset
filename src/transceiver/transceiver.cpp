@@ -9,7 +9,7 @@
 #include "CRC16.h"
 
 
-Transceiver::Transceiver(uint16_t deviceAddr, uint8_t rxPin, uint8_t txPin)
+Transceiver::Transceiver(const uint16_t deviceAddr, uint8_t rxPin, uint8_t txPin)
 {
     deviceAddr_ = deviceAddr;
     rxPin_ = rxPin;
