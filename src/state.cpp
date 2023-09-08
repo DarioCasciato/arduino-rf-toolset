@@ -1,5 +1,5 @@
 // =============================================================================
-// Arduino-RF-Toolkit | State
+// Arduino-RF-Toolset | State
 // =============================================================================
 
 #include "state.h"
@@ -8,8 +8,6 @@
 #include "Timer.h"
 #include "responseHandlers/responseHandlers.h"
 #include "sendHandlers/sendHandlers.h"
-
-Timer counter;
 
 //------------------------------------------------------------------------------
 
@@ -38,8 +36,6 @@ namespace State
     // State implementations
     void stateApp()
     {
-        // TODO: implement serialHandler
-
         if(Hardware::transceiver.available())
         {
             ResponseHandler::responseHandler(Hardware::transceiver);
@@ -47,7 +43,7 @@ namespace State
 
         if(Hardware::serialTLV.getSerialInput())
         {
-            SendHandler::sendHandler(Hardware::serialTLV);
+            SendHandler::sendHandler(Hardware::transceiver, Hardware::serialTLV);
         }
     }
 

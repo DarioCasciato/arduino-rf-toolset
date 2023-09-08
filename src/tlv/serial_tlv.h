@@ -34,6 +34,10 @@ public:
   /// @param value The variable to store the read uint32_t value
   void read(uint32_t& value);
 
+  /// @brief Reads a uint64_t value from the internal buffer
+  /// @param value The variable to store the read uint64_t value
+  void read(uint64_t& value);
+
   /// @brief Reads a string value from the internal buffer
   /// @param value The variable to store the read string value
   void read(String& value);

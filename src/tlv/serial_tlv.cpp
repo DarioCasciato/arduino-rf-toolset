@@ -53,8 +53,26 @@ void SerialTLV::read(uint32_t& value)
 {
     if (reader + 3 < buffer_ + sizeof(buffer_))
     {
-        value = (uint32_t)reader[0] << 24 | (uint32_t)reader[1] << 16 | (uint32_t)reader[2] << 8 | reader[3];
+        value = (uint32_t)reader[0] << 24 | (uint32_t)reader[1] << 16 |
+                (uint32_t)reader[2] << 8 | reader[3];
         reader += 4;
+    }
+    else
+    {
+        error_ = 1;
+    }
+}
+
+void SerialTLV::read(uint64_t& value)
+{
+    if (reader + 7 < buffer_ + sizeof(buffer_))
+    {
+        value = (uint64_t)reader[0] << 56 | (uint64_t)reader[1] << 48 |
+                (uint64_t)reader[2] << 40 | (uint64_t)reader[3] << 32 |
+                (uint64_t)reader[4] << 24 | (uint64_t)reader[5] << 16 |
+                (uint64_t)reader[6] << 8 | reader[7];
+
+        reader += 8;
     }
     else
     {

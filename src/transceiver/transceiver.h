@@ -1,5 +1,5 @@
 // =============================================================================
-// Arduino-RF-Toolkit | Transceiver
+// Arduino-RF-Toolset | Transceiver
 // =============================================================================
 
 #ifndef ARDUINO_RF_TOOLKIT_TRANSCEIVER_H

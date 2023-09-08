@@ -1,5 +1,5 @@
 // =============================================================================
-// Arduino-RF-Toolkit | Tag-Handlers
+// Arduino-RF-Toolset | Tag-Handlers
 // =============================================================================
 
 #ifndef ARDUINO_RF_TOOLKIT_TAG_HANDLERS_
@@ -11,25 +11,25 @@
 namespace SendHandler
 {
     /// @brief The send handler function
-    void sendHandler(SerialTLV handler);
+    void sendHandler(Transceiver sender, SerialTLV handler);
 
     /// @brief ScanDevices Send Handler function
-    void scanDevices(SerialTLV handler);
+    void scanDevices(Transceiver sender, SerialTLV handler);
 
     /// @brief PingPong Send Handler function
-    void PingPong(SerialTLV handler);
+    void PingPong(Transceiver sender, SerialTLV handler);
 
     /// @brief sendString Send Handler function
-    void sendString(SerialTLV handler);
+    void sendString(Transceiver sender, SerialTLV handler);
 
     /// @brief sendNumber Send Handler function
-    void sendNumber(SerialTLV handler);
+    void sendNumber(Transceiver sender, SerialTLV handler);
 
     /// @brief setPort Send Handler function
-    void setPort(SerialTLV handler);
+    void setPort(Transceiver sender, SerialTLV handler);
 
     /// @brief setPort Send Handler function
-    void getPort(SerialTLV handler);
+    void getPort(Transceiver sender, SerialTLV handler);
 
 } // namespace sendHandler
 
