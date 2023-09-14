@@ -2,6 +2,9 @@
 // Arduino-RF-Toolset | TLV
 // =============================================================================
 
+#ifndef _ARDUINO_RF_TOOLSET_TLV_
+#define _ARDUINO_RF_TOOLSET_TLV_
+
 #include <Arduino.h>
 #include <stdint.h>
 
@@ -32,7 +35,7 @@ public:
     /// @param senderAddress The sender address of the TLV packet
     /// @param receiverAddress The receiver address of the TLV packet
     /// @param data The data of the TLV packet
-    void TLV::createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress,
+    void createPacket(uint16_t tag, uint16_t crc, uint16_t senderAddress,
                                      uint16_t receiverAddress, String data);
 
     /// @brief Returns the packet as a Arduino String
@@ -75,7 +78,7 @@ public:
     /// @brief Returns the data of the packet
     ///
     /// @return The data of the packet
-    void* getData();
+    void* getData() { return (void*)packet_.data; }
 
     /// @ save the data to passed variable
     /// @param value The value that needs to be saved
@@ -95,7 +98,7 @@ private:
     /// @brief Calculates the full size of the packet
     /// @param packet The packet that needs to be calculated
     /// @return The full size of the packet
-    uint16_t TLV::getFullPacketSize(TLVPacket packet);
+    uint16_t getFullPacketSize(TLVPacket packet);
 
     TLVPacket packet_;
     char* dataBuffer_;
@@ -115,13 +118,12 @@ private:
     void append(uint32_t value);
     void append(uint64_t value);
     void append(String value);
+    void append(bool value);
+    void append(int value);
 
 public:
     /// @brief Constructor
     TLVResponse();
-
-    /// @brief Destructor
-    ~TLVResponse();
 
     template <typename T>
     TLVResponse operator<<(T value)
@@ -135,3 +137,5 @@ public:
     /// @return The response as a Arduino String
     String toString();
 };
+
+#endif // _ARDUINO_RF_TOOLSET_TLV_

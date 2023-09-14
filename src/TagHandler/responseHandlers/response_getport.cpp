@@ -5,10 +5,12 @@
 #include "responseHandlers.h"
 #include "logging.h"
 
-#include "hardware.h"
+#include "../../hardware.h"
 #include "tlv.h"
 #include "gpiohandler.h"
 
+void sendGetPort(Transceiver handler);
+void evaluateGetPort(Transceiver handler);
 
 namespace { uint8_t responseBit; }
 

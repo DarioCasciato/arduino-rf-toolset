@@ -12,7 +12,7 @@ bool SerialTLV::getSerialInput()
         size_t bytesRead = Serial.readBytes(buffer_, sizeof(buffer_));
         if (bytesRead > 0)
         {
-            reader = buffer_;
+            reader = buffer_ + 3; // skip tag and separator ( ; )
             return true;
         }
     }

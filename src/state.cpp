@@ -6,6 +6,7 @@
 #include "hardware.h"
 #include "configurations.h"
 #include "Timer.h"
+#include "logging.h"
 #include "responseHandlers/responseHandlers.h"
 #include "sendHandlers/sendHandlers.h"
 
@@ -30,7 +31,7 @@ namespace State
         return;
 
         exception:
-            for(;;) {}
+            for(;;) { delay(500); Logging::log("Caught exception"); }
     }
 
     // State implementations

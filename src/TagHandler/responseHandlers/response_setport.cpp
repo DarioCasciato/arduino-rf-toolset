@@ -6,7 +6,7 @@
 #include "logging.h"
 
 #include "gpioHandler.h"
-#include "hardware.h"
+#include "../../hardware.h"
 
 /// @brief setPort Handler function
 ///

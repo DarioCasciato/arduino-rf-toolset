@@ -5,6 +5,8 @@
 #ifndef UTILS_CONVERSIONS_
 #define UTILS_CONVERSIONS_
 
+#include <Arduino.h>
+
 namespace Conversions
 {
     /// @brief Converts a uint64_t to a String

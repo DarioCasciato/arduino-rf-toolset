@@ -4,8 +4,15 @@
 
 #include <stdint.h>
 #include <Arduino.h>
+#include "gpio.h"
 #include "../../src/hardware.h"
-#include "../EdgeDetection/EdgeDetection.h"
+#include "../../src/transceiver/transceiver.h"
+#include "../../src/tlv/serial_tlv.h"
+#include "../../utils/EdgeDetection/EdgeDetection.h"
+#include "../../utils/Arduino/gpio.h"
+#include "../../lib/TinyRF/TinyRF_TX.h"
+#include "../../lib/TinyRF/TinyRF_RX.h"
+#include "../../lib/TinyRF/TinyRF.h"
 
 #ifndef UTILS_GPIO_HANDLER_
 #define UTILS_GPIO_HANDLER_

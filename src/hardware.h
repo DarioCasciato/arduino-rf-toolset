@@ -25,7 +25,6 @@ namespace Hardware
     extern Transceiver transceiver;
     extern SerialTLV serialTLV;
 
-
     /// @brief Initializes hardware
     void init();
 

@@ -178,11 +178,6 @@ TLVResponse::TLVResponse()
 {
 }
 
-TLVResponse::~TLVResponse()
-{
-    delete[] response_;
-}
-
 String TLVResponse::toString()
 {
     String responseString = "";
@@ -232,4 +227,14 @@ void TLVResponse::append(String value)
     {
         append((uint8_t)value[i]);
     }
+}
+
+void TLVResponse::append(bool value)
+{
+    append((uint8_t)value);
+}
+
+void TLVResponse::append(int value)
+{
+    append((uint32_t)value);
 }

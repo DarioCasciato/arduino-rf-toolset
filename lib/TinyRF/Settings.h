@@ -1,7 +1,7 @@
 #ifndef TRF_SETTINGS_H
 #define TRF_SETTINGS_H
 
-#include "hardware.h"
+#include "../../src/configurations.h"
 
 /**
  * IMPORTANT: FOR SETTINGS THAT HAVE MULTIPLE OPTIONS ONLY ONE OPTION CAN BE ENABLED AT A TIME
@@ -13,7 +13,7 @@
 /**
  * The pin that is connected to the transmission module.
 **/
-const uint8_t TRF_TX_PIN = (uint8_t) Hardware::Port::RF_TX;
+const uint8_t TRF_TX_PIN = PIN_RF_TX;
 
 
 /**
