@@ -1,16 +1,19 @@
-# Arduino Firmware Template Repository
 
-This is a template repository for developing firmware using Object-Oriented Programming (OOP) principles with Arduino and PlatformIO. It provides a structured starting point for creating Arduino projects that follow best practices for modularity, maintainability, and scalability.
+# Arduino RF Toolset
+
+This repository provides a comprehensive toolkit for 433MHz RF communication using MX-05V (receiver) and MX-FS-03V (transmitter) modules with Arduino. It leverages Object-Oriented Programming (OOP) principles and the tinyRF library for efficient and modular code.
 
 ## Features
 
-- Object-Oriented Programming approach for organizing code into reusable and modular classes.
-- PlatformIO integration for easy project management, dependency management, and build system configuration.
-- Basic directory structure to organize your code effectively.
+- TLV-structured data transmission for robust and flexible communication.
+- Real-time command options via serial monitor.
+- Object-Oriented Programming approach for code modularity and reusability.
+- PlatformIO integration for streamlined project and dependency management.
+- Response and Send Handlers for managing various RF commands.
 
 ## Prerequisites
 
-To use this template repository, you need to have the following installed:
+To use this repository, you need to have the following installed:
 
 - [Arduino IDE](https://www.arduino.cc/en/software)
 - [PlatformIO Core](https://platformio.org/platformio-ide)
@@ -19,81 +22,69 @@ To use this template repository, you need to have the following installed:
 
 ## Getting Started
 
-To create a new firmware project using this template repository, follow these steps:
-
-1. Click on the "Use this template" button at the top of the repository page to create a new repository based on this template.
-2. Clone the newly created repository to your local machine using Git.
+1. Clone this repository to your local machine using Git.
    ```
-   git clone https://github.com/your-username/your-project.git
+   git clone https://github.com/DarioCasciato/arduino-rf-toolset.git
    ```
-3. Change into the project directory.
+2. Navigate into the project directory.
    ```
-   cd your-project
+   cd arduino-rf-toolset
    ```
-4. Open the project in your preferred integrated development environment (i personally use VS-Code).
-5. Build and upload the firmware to your Arduino board using PlatformIO.
+3. Open the project in your preferred integrated development environment (IDE). (VS-Code is recommended).
+4. Build and upload the firmware to your Arduino board using PlatformIO.
 
 ## Directory Structure
 
-The directory structure of this template repository is as follows:
+The directory structure of this repository is organized as follows:
 
 ```
-│
+├───lib
+│   └───TinyRF
 ├───src
-│       configurations.h
-│       hardware.cpp
-│       hardware.h
-│       main.cpp
-│       state.cpp
-│       state.h
-│
+│   ├───TagHandler
+│   │   ├───responseHandlers
+│   │   └───sendHandlers
+│   ├───tlv
+│   └───transceiver
 └───utils
     ├───Arduino
     ├───Buzzer
+    ├───Conversions
     ├───EdgeDetection
     ├───LED
-    ├───LED_RGB
+    ├───Logging
     ├───Potentiometer
-    ├───Security
+    └───Security
     └───Timer
 ```
 
-- **`src/`**: This directory contains the main firmware code. You can create additional source files as needed, such as configuration files (`configurations.h`) or modules (`hardware.cpp`, `hardware.h`, etc.).
-- **`utils/`**: contains useful libraries
-- **`README.md`**: This file provides an overview and instructions for the template repository.
+- **`lib/TinyRF/`**: Contains the tinyRF library files.
+- **`src/TagHandler/`**: Contains the response and send handlers for managing RF commands.
+- **`src/tlv/`**: Contains the TLV (Tag-Length-Value) related files.
+- **`src/transceiver/`**: Contains the transceiver class.
+- **`utils/`**: Contains useful libraries for various functionalities.
 
-## Removing Example Code
+## How it Works
 
-If you prefer to start with a clean slate and remove the example code provided in this template, you can use the "remove-template" branch. This branch has already removed the example code and is ready for you to begin your project without any pre-existing code.
+### State Management
 
-### Instructions:
+The `stateApp()` function serves as the main state manager, handling incoming data from the RF transceiver and serial monitor. It delegates tasks to `ResponseHandler` and `SendHandler` based on the type of data received.
 
-1. Switch to the "remove-template" branch using the following command:
+### Response Handler
 
-   ```
-   git checkout remove-template
-   ```
-2. Merge the "remove-template" branch into the "main" branch:
+The `ResponseHandler` class manages incoming RF commands. It supports a variety of tags, such as `ScanDevices`, `PingPong`, `SendString`, `SendNumber`, `SetPort`, and `GetPort`.
 
-   ```
-   git merge remove-template
-   ```
+### Send Handler
 
-   **Note:** Before merging, make sure you have committed or stashed any changes you made to the "main" branch to avoid conflicts.
-3. Once the merge is complete, the "main" branch will now contain only the directory structure and the README.md file.
-4. You can now start building your firmware project from this clean template.
-
-### Additional Information:
-
-The "remove-template" branch was created to provide users with a minimalist starting point, eliminating any example code that might not be relevant to your specific project requirements.
+The `SendHandler` class manages outgoing RF commands. Similar to the `ResponseHandler`, it supports a variety of tags for different functionalities.
 
 ## Contributing
 
-Contributions to improve this template repository are always welcome. If you find any issues or have suggestions for enhancements, please open an issue or submit a pull request.
+Contributions to improve this repository are always welcome. If you find any issues or have suggestions for enhancements, please open an issue or submit a pull request.
 
 ## License
 
-This template repository is licensed under the [MIT License](LICENSE). Feel free to use it as a starting point for your own firmware projects.
+This repository is licensed under the [MIT License](LICENSE).
 
 ## Resources
 
